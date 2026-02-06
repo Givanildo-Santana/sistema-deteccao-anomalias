@@ -8,8 +8,8 @@ import joblib
 bundle = joblib.load("modelo_anomalia.joblib")
 scaler = bundle["scaler"]
 model = bundle["model"]
-ordem_sensores = ["MQ7","MQ2","T","U"]
-#(bundle)["colunas"]  # garante mesma ordem do treino
+# ordem_sensores = ["MQ7","MQ2","T","U"]
+(bundle)["colunas"]  # garante mesma ordem do treino
 campos_obrigatorios = ["ID=","MQ7=","MQ2=","T=","U=","S="]
 campos_filtrados = ["MQ7","MQ2","T","U"]
 

@@ -1,0 +1,38 @@
+# =========================
+# Python
+# =========================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ambientes virtuais
+.venv/
+venv/
+ENV/
+
+# =========================
+# Dados e modelos
+# =========================
+# Dataset gerado durante execução
+python/data/*.csv
+
+# Modelos treinados
+python/models/*.joblib
+
+# =========================
+# IDEs
+# =========================
+.idea/
+.vscode/
+
+# =========================
+# Sistema operacional
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Logs e temporários
+# =========================
+*.log

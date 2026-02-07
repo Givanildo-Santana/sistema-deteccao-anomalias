@@ -1,20 +1,24 @@
 import serial
 import time
+from config import PORTA_ARDUINO,BAUDRATE, TIMEOUT_SERIAL_S
 
 # -------------------------
 # Conexão com o Arduino
 # -------------------------
-# Responsável por abrir a comunicação serial com o Arduino.
 # Recebe a porta (ex: "COM5") e retorna o objeto de conexão já pronto.
-def con_arduino(porta):
-    # Abre a porta serial na velocidade configurada no Arduino (9600)
-    con = serial.Serial(porta, 9600)
+def conectar_arduino():
+    conexao_arduino = serial.Serial(
+        PORTA_ARDUINO,
+        BAUDRATE,
+        timeout=TIMEOUT_SERIAL_S
+    )
+
 
     # Pequena pausa para garantir que o Arduino reinicie
     # e a comunicação fique estável antes de usar
     time.sleep(2)
 
-    return con
+    return conexao_arduino
 
 
 # -------------------------
@@ -28,16 +32,16 @@ def con_arduino(porta):
 #
 # Retorno:
 # - string com a linha recebida do Arduino
-def controle_arduino(comando, conexao):
+def enviar_comando_e_ler_linha(comando_serial, conexao_serial):
 
     # Envia o comando para o Arduino
-    conexao.write(comando)
+    conexao_serial.write(comando_serial)
 
     # Lê uma linha completa da serial (até '\n')
     # O decode converte de bytes para string
     # errors="ignore" evita erro caso venha algum caractere inválido
-    dados_brutos = conexao.readline().decode(
+    dados_serial = conexao_serial.readline().decode(
         "utf-8", errors="ignore"
     ).strip()
 
-    return dados_brutos
+    return dados_serial

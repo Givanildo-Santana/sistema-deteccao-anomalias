@@ -1,6 +1,6 @@
 import serial
 import time
-from config import PORTA_ARDUINO,BAUDRATE, TIMEOUT_SERIAL_S
+from Python.src.config import PORTA_ARDUINO,BAUDRATE, TIMEOUT_SERIAL_S
 
 # -------------------------
 # Conexão com o Arduino
@@ -17,7 +17,6 @@ def conectar_arduino():
     # Pequena pausa para garantir que o Arduino reinicie
     # e a comunicação fique estável antes de usar
     time.sleep(2)
-
     return conexao_arduino
 
 
@@ -43,5 +42,4 @@ def enviar_comando_e_ler_linha(comando_serial, conexao_serial):
     dados_serial = conexao_serial.readline().decode(
         "utf-8", errors="ignore"
     ).strip()
-
     return dados_serial

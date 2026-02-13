@@ -1,4 +1,4 @@
-from config import JANELA_PREDICAO
+from Python.src.config import JANELA_PREDICAO
 
 # -------------------------
 # Padronização dos dados

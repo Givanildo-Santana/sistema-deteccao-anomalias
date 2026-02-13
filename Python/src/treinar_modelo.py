@@ -3,7 +3,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import IsolationForest
 import joblib
 
-from Python.src.config import ARQUIVO_CSV, ordem_sensores, MODELO_PATH
+from config import ARQUIVO_CSV, ordem_sensores, MODELO_PATH
 
 # -------------------------
 # Carregamento do dataset

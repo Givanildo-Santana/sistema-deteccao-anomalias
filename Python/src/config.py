@@ -11,7 +11,6 @@ MODELO_PATH = "../models/modelo_anomalia.joblib"
 # -------------------------
 campos_obrigatorios = ["ID=", "MQ7=", "MQ2=", "T=", "U=", "S="]
 campos_filtrados = ["MQ7", "MQ2", "T", "U"]
-
 # -------------------------
 # Arquivos
 # -------------------------

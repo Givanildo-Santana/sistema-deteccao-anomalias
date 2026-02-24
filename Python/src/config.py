@@ -4,7 +4,7 @@
 # Usadas tanto no treinamento quanto na execução.
 
 ordem_sensores = ["MQ7", "MQ2", "T", "U"]
-MODELO_PATH = "../models/modelo_anomalia.joblib"
+MODELO_PATH = "models/modelo_anomalia.joblib"
 
 # -------------------------
 # Protocolo Serial (mensagens do Arduino)

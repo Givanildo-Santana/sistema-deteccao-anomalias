@@ -1,5 +1,4 @@
 import joblib
-import data
 from Python.src.arduino_serial import conectar_arduino, enviar_comando_e_ler_linha
 from Python.src.parser_serial import conversao_dados
 from Python.src.processamento import calcular_media_movel, vetor
@@ -85,7 +84,8 @@ while True:
 
         # Normaliza os dados e executa a predição
         vetor_scaled = padronizar_vetor(vetor_base, scaler)
-        padronizar_vetor(vetor_scaled, model)
+        predicao = int(model.predict(vetor_scaled)[0])
+
 
         # Decide se o estado atual é normal ou anômalo
         status_alerta = detectar_anomalia(vetor_predicoes)

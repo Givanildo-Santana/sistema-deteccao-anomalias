@@ -34,6 +34,9 @@ def executar_predicao(vetor_padronizado, modelo_treinado, buffer_predicoes):
 # Decide se entra em modo alerta olhando o buffer de predições.
 # Só começa a decidir quando já tem 5 resultados acumulados.
 def detectar_anomalia(buffer_predicoes):
+    print("buffer_predicoes:")
+    print (buffer_predicoes)
+
     if len(buffer_predicoes) < JANELA_PREDICAO:
         return False
 

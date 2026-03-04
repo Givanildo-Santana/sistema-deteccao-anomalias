@@ -2,7 +2,7 @@ import joblib
 from Python.src.arduino_serial import conectar_arduino, enviar_comando_e_ler_linha
 from Python.src.parser_serial import conversao_dados
 from Python.src.processamento import calcular_media_movel, vetor
-from Python.src.modelo_ml import padronizar_vetor, detectar_anomalia
+from Python.src.modelo_ml import padronizar_vetor, detectar_anomalia, executar_predicao
 from Python.src.config import (
     ordem_sensores,
     campos_obrigatorios,
@@ -53,13 +53,17 @@ while True:
 
     # Solicita uma nova leitura ao Arduino
     dados_brutos = enviar_comando_e_ler_linha(b'#01\n', conexao_arduino)
-
+    # print("Dados Brutos: " + dados_brutos)
     # Converte e valida a mensagem recebida
     dados_tratado = conversao_dados(
         dados_brutos,
         campos_obrigatorios,
         campos_filtrados
     )
+
+    # print("Dados tratado: ")
+    # print(dados_tratado)
+
 
     # Ignora a leitura se estiver incompleta ou inválida
     if dados_tratado is None:
@@ -84,12 +88,15 @@ while True:
 
         # Normaliza os dados e executa a predição
         vetor_scaled = padronizar_vetor(vetor_base, scaler)
-        predicao = int(model.predict(vetor_scaled)[0])
+
+
+        executar_predicao(vetor_scaled,model,vetor_predicoes)
 
 
         # Decide se o estado atual é normal ou anômalo
         status_alerta = detectar_anomalia(vetor_predicoes)
-
+        # print("status_alerta")
+        # print(status_alerta)
         # Envia comando correspondente ao Arduino
         if status_alerta is True:
             conexao_arduino.write(b'#03\n')
